@@ -15,7 +15,7 @@ public class PlayerAudioController : MonoBehaviour
     // keep track of the jumping state ... 
     bool isJumping = false; 
     // make sure to keep track of the movement as well !
-    bool notMoving = false;
+    bool isMoving = false;
     Rigidbody2D rb; // note the "2D" prefix 
     
     // Start is called before the first frame update
@@ -33,21 +33,19 @@ public class PlayerAudioController : MonoBehaviour
 
     // FixedUpdate is called whenever the physics engine updates
     void FixedUpdate()
-    {
+    { 
 
-       float v = rb.velocity.magnitude;
-        if(v>1 && isMoving&& isJumping&& ){
+    float v = rb.velocity.magnitude;
+        if(v>1 && !isMoving && !isJumping){
             run.Play();
             isMoving = true;
-        }
-	
-	} 
+	}
     else if (v<1 && isMoving && !isJumping){
         run.Stop();
         isMoving = false;
-    
-	
     }
+}
+    
     
     // trigger your landing sound here !
     public void OnLanding() {
